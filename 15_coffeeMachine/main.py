@@ -76,7 +76,6 @@ def deduct_resources(drink):
 
 def report(money):
     pass
-    # TODO: print the report
     for ingredient in resources:
         print(f"{ingredient}: {resources[ingredient]}")
     print(f"Money: {money}")
@@ -85,7 +84,6 @@ def report(money):
 def main():
     global money
 
-    # TODO: 1. get user input: espresso/latte/cappuccino and off/report
     choice = input("What would you like? (espresso/latte/cappuccino): ").lower()
 
     # menu of options for the coffee machine
@@ -94,19 +92,14 @@ def main():
     elif choice == "report":
         report(money)
     else:
-        # TODO: 2. check if there are sufficient resources, else return
         enough_ingredients = check_ingredients(choice)
         if not enough_ingredients:
             return
 
-        # TODO: 3. process coins, find money inserted
         cash_in = get_cash()  # asks user for money
         cost = MENU[choice]["cost"]
         cash_out = cash_in - cost
 
-        # TODO: 4. check transaction success:
-        #   success: add money to profit, deduct the needed resources, return the change if change != 0 (2 decimal)
-        #   failure: print-> money refunded
         enough_cash = check_transaction(cash_out)
 
         # failure
@@ -118,7 +111,6 @@ def main():
         deduct_resources(choice)
         print(f"Here is ${cash_out:.2f} in change.")
 
-        # TODO: 5. print the final message while serving it
         print(f"Here is your {choice} ☕. Enjoy!")
 
 
