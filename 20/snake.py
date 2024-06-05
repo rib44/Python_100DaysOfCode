@@ -2,14 +2,18 @@ from turtle import Turtle
 
 MOVE_DISTANCE = 20
 STARTING_HEAD_POSITION = 0
-ROTATION_ANGLE = 90
+
+UP = 90
+DOWN = 270
+LEFT = 180
+RIGHT = 0
 
 
 class Snake:
     def __init__(self):
-        self.head = None
         self.segments = []
         self.create_snake()
+        self.head = self.segments[0]
 
     def create_snake(self):
         pos = STARTING_HEAD_POSITION
@@ -21,8 +25,6 @@ class Snake:
             self.segments.append(head)
             pos -= 20
 
-        self.head = self.segments[0]
-
     def move(self):
         # first segment is not moved
         for seg_num in range(len(self.segments) - 1, 0, -1):
@@ -33,41 +35,17 @@ class Snake:
         self.segments[0].forward(MOVE_DISTANCE)
 
     def up(self):
-        snake_direction = self.head.heading()
-
-        if snake_direction == 0:
-            # east facing
-            self.segments[0].left(ROTATION_ANGLE)
-        elif snake_direction == 180:
-            # west facing
-            self.segments[0].right(ROTATION_ANGLE)
+        if self.head.heading() != DOWN:
+            self.head.setheading(UP)
 
     def down(self):
-        snake_direction = self.head.heading()
-
-        if snake_direction == 0:
-            # east facing
-            self.segments[0].right(ROTATION_ANGLE)
-        elif snake_direction == 180:
-            # west facing
-            self.segments[0].left(ROTATION_ANGLE)
+        if self.head.heading() != UP:
+            self.head.setheading(DOWN)
 
     def left(self):
-        snake_direction = self.head.heading()
-
-        if snake_direction == 90:
-            # north facing
-            self.segments[0].left(ROTATION_ANGLE)
-        elif snake_direction == 270:
-            # south facing
-            self.segments[0].right(ROTATION_ANGLE)
+        if self.head.heading() != RIGHT:
+            self.head.setheading(LEFT)
 
     def right(self):
-        snake_direction = self.head.heading()
-
-        if snake_direction == 90:
-            # east facing
-            self.segments[0].right(ROTATION_ANGLE)
-        elif snake_direction == 270:
-            # west facing
-            self.segments[0].left(ROTATION_ANGLE)
+        if self.head.heading() != LEFT:
+            self.head.setheading(RIGHT)
