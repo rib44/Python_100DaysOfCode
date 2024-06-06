@@ -10,7 +10,7 @@ tim = Turtle()
 #     tim.right(90)
 
 # draw a dashed line
-# for _ in range(20):
+# for _ in range(20_snakeGame):
 #     tim.forward(10)
 #     tim.penup()
 #     tim.forward(10)
