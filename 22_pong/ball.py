@@ -1,5 +1,4 @@
 from turtle import Turtle
-from random import randint
 
 MOVE = 10
 
