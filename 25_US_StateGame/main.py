@@ -27,11 +27,14 @@ while len(correct_user_guess) < 50:
     answer_state = screen.textinput(title=f"{score}/50 Guess the State", prompt="What's another state's name?").title()
 
     if answer_state == "Exit":
-        missing_states = []
+        # missing_states = []
+        #
+        # for state in state_list:
+        #     if state not in correct_user_guess:
+        #         missing_states.append(state)
 
-        for state in state_list:
-            if state not in correct_user_guess:
-                missing_states.append(state)
+        # list comprehension
+        missing_states = [state for state in state_list if state not in correct_user_guess]
 
         # now state_list only contains the unknown state names
         new_df = pd.DataFrame(missing_states, columns=["state"])
